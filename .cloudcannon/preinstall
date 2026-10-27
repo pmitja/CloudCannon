@@ -1,0 +1,5 @@
+# Runs before `npm ci` on CloudCannon.
+# Astro 7 needs Node >= 22.23.4, newer than CloudCannon's "22" image, so switch to Node 24.
+nvm install 24
+nvm use 24
+node -v

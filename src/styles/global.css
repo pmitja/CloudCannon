@@ -103,11 +103,33 @@
   .eyebrow {
     @apply text-[11px] font-medium uppercase tracking-[0.18em];
   }
-  .prose-ltse p + p {
-    @apply mt-4;
+  /* Article body (Markdown) */
+  .prose-ltse > * + * {
+    @apply mt-5;
+  }
+  .prose-ltse h2 {
+    @apply mt-12 text-3xl leading-tight;
+  }
+  .prose-ltse h3 {
+    @apply mt-10 text-2xl leading-tight;
+  }
+  .prose-ltse strong {
+    @apply font-semibold;
   }
   .prose-ltse a {
     @apply underline underline-offset-4;
+  }
+  .prose-ltse blockquote {
+    @apply my-10 border-l-4 border-primary pl-6 font-serif text-2xl leading-snug font-light;
+  }
+  .prose-ltse ul {
+    @apply list-disc pl-6;
+  }
+  .prose-ltse ol {
+    @apply list-decimal pl-6;
+  }
+  .prose-ltse li + li {
+    @apply mt-2;
   }
 }
 

@@ -26,6 +26,59 @@ collections_config:
         schema: default
         icon: note_add
 
+  news:
+    path: src/content/news
+    name: News & Insights
+    icon: newspaper
+    url: /news/[slug]/
+    glob:
+      - '**/*.md'
+    sort:
+      key: date
+      order: desc
+    sort_options:
+      - key: date
+        order: desc
+        label: Newest first
+      - key: title
+        label: Title (A-Z)
+    _enabled_editors:
+      - content
+      - visual
+      - data
+    _inputs:
+      # Articles need a real category ("All" only makes sense for the Latest news section)
+      category:
+        type: select
+        options:
+          values:
+            - id: press-release
+              name: Press release
+            - id: in-the-news
+              name: In the news
+            - id: research
+              name: Research
+    schemas:
+      default:
+        path: .cloudcannon/schemas/news.md
+        name: Article
+        icon: article
+    add_options:
+      - name: New article
+        schema: default
+        icon: post_add
+    preview:
+      text:
+        - key: title
+      subtext:
+        - template: '{category} · {source}'
+      metadata:
+        - icon: event
+          text:
+            - key: date
+      image:
+        - key: image
+
   settings:
     path: src/data
     name: Site settings
@@ -39,6 +92,7 @@ collection_groups:
   - heading: Website
     collections:
       - pages
+      - news
   - heading: Global
     collections:
       - settings
@@ -118,6 +172,41 @@ _inputs:
   id:
     type: text
     label: Measurement / container ID or domain
+  date:
+    type: date
+    comment: Publish date, used to sort articles
+    instance_value: NOW
+  category:
+    type: select
+    comment: Which filter the article appears under on /insights/
+    options:
+      values:
+        - id: all
+          name: All categories
+        - id: press-release
+          name: Press release
+        - id: in-the-news
+          name: In the news
+        - id: research
+          name: Research
+  source:
+    type: text
+    comment: e.g. Press Release, The Wall Street Journal, Bloomberg Intelligence
+  author:
+    type: text
+  excerpt:
+    type: textarea
+    comment: Short summary for cards and Google (1–2 sentences)
+  external_url:
+    type: url
+    label: Original article link
+    comment: Optional. Shows a "Read the full story" button
+  count:
+    type: number
+    label: Number of articles
+    options:
+      min: 1
+      max: 9
   platform:
     type: select
     options:
@@ -308,3 +397,20 @@ _structures:
           text:
             - key: heading
           subtext: CTA banner
+
+      - label: Latest news
+        icon: newspaper
+        description: The newest articles from News & Insights, filled in automatically
+        value:
+          _name: latest_news
+          eyebrow: News & Insights
+          heading: Financial insights for enduring impact
+          count: 3
+          category: all
+          button:
+            label: View All News
+            url: /insights/
+        preview:
+          text:
+            - key: heading
+          subtext: Latest news

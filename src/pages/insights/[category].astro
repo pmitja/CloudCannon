@@ -1,0 +1,12 @@
+---
+import NewsIndex from '@/components/news/NewsIndex.astro';
+import { categories } from '@/lib/news';
+
+export function getStaticPaths() {
+  return categories.map((c) => ({ params: { category: c.slug } }));
+}
+
+const { category } = Astro.params;
+---
+
+<NewsIndex active={category} />

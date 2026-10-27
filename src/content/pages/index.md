@@ -141,6 +141,15 @@ content_blocks:
       label: Explore Trading
       url: https://ltse.com/trading/why-trade
 
+  - _name: latest_news
+    eyebrow: News & Insights
+    heading: Financial insights for enduring impact
+    count: 3
+    category: all
+    button:
+      label: View All News
+      url: /insights/
+
   - _name: callout
     heading: We believe business is destined for better
     text: Today, business leaders are forced to prioritize short-term gains over lasting value. At LTSE, we’re building a world where businesses are supported to create long-term prosperity and lasting impact.

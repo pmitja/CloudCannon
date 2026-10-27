@@ -148,6 +148,15 @@ content_blocks:
       alt: Two people walk past a tree while two others sit on a bench, chatting near a fountain and speech bubble sign.
     background: grey
 
+  - _name: latest_news
+    eyebrow: News & Insights
+    heading: Financial insights for enduring impact
+    count: 3
+    category: all
+    button:
+      label: View All News
+      url: /insights/
+
   - _name: cta_banner
     heading: Ready to learn more about listing on the Exchange?
     button:

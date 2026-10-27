@@ -1,0 +1,37 @@
+---
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { categoryLabel, formatDate, newsUrl, type NewsEntry } from '@/lib/news';
+
+interface Props {
+  entry: NewsEntry;
+}
+
+const { entry } = Astro.props;
+const { title, date, category, source, author, image } = entry.data;
+---
+
+<a href={newsUrl(entry)} class="group block h-full">
+  <Card className="h-full gap-0 overflow-hidden rounded-none border-foreground/30 py-0 shadow-none transition-shadow group-hover:shadow-lg">
+    <div class="aspect-[16/10] overflow-hidden border-b border-foreground/15 bg-secondary">
+      {
+        image && (
+          <img
+            src={image}
+            alt=""
+            class="size-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            loading="lazy"
+          />
+        )
+      }
+    </div>
+    <CardContent className="flex flex-1 flex-col p-6">
+      <div class="flex flex-wrap items-center gap-2">
+        <Badge variant="secondary" className="eyebrow rounded-none">{categoryLabel(category)}</Badge>
+        <time class="text-[12px] text-muted-foreground" datetime={date.toISOString()}>{formatDate(date)}</time>
+      </div>
+      <h3 class="mt-4 text-2xl leading-tight group-hover:underline group-hover:underline-offset-4">{title}</h3>
+      {(source || author) && <p class="eyebrow mt-auto pt-6 text-muted-foreground">{[source, author].filter(Boolean).join(' · ')}</p>}
+    </CardContent>
+  </Card>
+</a>

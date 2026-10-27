@@ -1,0 +1,76 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import NewsCard from '@/components/news/NewsCard.astro';
+import CtaBanner from '@/components/blocks/CtaBanner.astro';
+import LinkButton from '@/components/LinkButton';
+import { categories, getNews } from '@/lib/news';
+
+interface Props {
+  /** Category slug from the URL, or undefined for "All" */
+  active?: string;
+}
+
+const { active } = Astro.props;
+const current = categories.find((c) => c.slug === active);
+const entries = await getNews(current?.id);
+
+const filters = [{ slug: undefined, label: 'All' }, ...categories];
+const title = current ? `${current.label} | News & Insights | LTSE` : 'News & Insights | LTSE';
+---
+
+<BaseLayout
+  title={title}
+  seo={{ description: 'Press releases, media coverage and research from the Long-Term Stock Exchange.' }}
+>
+  <section class="border-b">
+    <div class="container-ltse py-14 md:py-20">
+      <p class="eyebrow">News & Insights</p>
+      <h1 class="mt-6 max-w-[16ch] text-5xl leading-none md:text-[64px]">Financial insights for enduring impact</h1>
+      <p class="mt-6 max-w-[52ch] text-[15px] leading-relaxed">
+        The latest press releases, media coverage and research from the Long-Term Stock Exchange.
+      </p>
+
+      <nav class="mt-10 flex flex-wrap gap-2" aria-label="Filter by category">
+        {
+          filters.map((f) => {
+            const isActive = f.slug === current?.slug;
+            return (
+              <LinkButton
+                href={f.slug ? `/insights/${f.slug}/` : '/insights/'}
+                label={f.label}
+                size="sm"
+                variant={isActive ? 'default' : 'outline'}
+                className="h-9 px-5 text-[13px]"
+                linkProps={isActive ? { 'aria-current': 'page' } : {}}
+              />
+            );
+          })
+        }
+      </nav>
+    </div>
+  </section>
+
+  <section class="py-14 md:py-20">
+    <div class="container-ltse">
+      {
+        entries.length ? (
+          <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {entries.map((entry) => (
+              <li>
+                <NewsCard entry={entry} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="text-muted-foreground">No articles in this category yet.</p>
+        )
+      }
+    </div>
+  </section>
+
+  <CtaBanner
+    heading="Media inquiries"
+    button={{ label: 'Contact Press Team', url: 'mailto:press@ltse.com' }}
+    background="grey"
+  />
+</BaseLayout>

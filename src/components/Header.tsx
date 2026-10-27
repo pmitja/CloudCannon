@@ -30,7 +30,7 @@ export default function Header({ navigation, button, logo }: Props) {
         </a>
 
         {/* Desktop navigation: shadcn NavigationMenu */}
-        <NavigationMenu viewport={false} className="hidden lg:flex">
+        <NavigationMenu viewport={false} className="hidden xl:flex">
           <NavigationMenuList className="gap-1">
             {navigation.map((item) =>
               item.children?.length ? (
@@ -65,7 +65,7 @@ export default function Header({ navigation, button, logo }: Props) {
           {/* Mobile navigation: shadcn Sheet + Accordion */}
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Open menu">
+              <Button variant="ghost" size="icon" className="xl:hidden" aria-label="Open menu">
                 <Menu className="size-6" />
               </Button>
             </SheetTrigger>

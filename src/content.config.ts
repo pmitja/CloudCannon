@@ -17,4 +17,23 @@ const pages = defineCollection({
   }),
 });
 
-export const collections = { pages };
+// News & Insights articles. The file name is the URL: src/content/news/my-story.md -> /news/my-story/
+const news = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/news' }),
+  schema: z.object({
+    title: text,
+    date: z.coerce.date(),
+    category: z.enum(['press-release', 'in-the-news', 'research']).catch('press-release'),
+    source: text,
+    author: text,
+    image: text,
+    excerpt: text,
+    // Optional link to the original coverage (newspaper article, SEC filing, ...)
+    external_url: text,
+    seo: z
+      .object({ description: text, image: text, no_index: z.boolean().nullish() })
+      .nullish(),
+  }),
+});
+
+export const collections = { pages, news };

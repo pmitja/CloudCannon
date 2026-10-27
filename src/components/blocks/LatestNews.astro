@@ -1,0 +1,45 @@
+---
+/**
+ * Page-builder section that pulls the newest articles from the News collection.
+ * Editors pick the heading, how many to show and which category; the cards fill themselves.
+ */
+import NewsCard from '@/components/news/NewsCard.astro';
+import LinkButton from '@/components/LinkButton';
+import { getNews } from '@/lib/news';
+
+const block = Astro.props as Record<string, any>;
+const count = Number(block.count) || 3;
+const entries = (await getNews(block.category)).slice(0, count);
+---
+
+<section class="border-t py-16 md:py-24">
+  <div class="container-ltse">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div>
+        <p class="eyebrow" data-editable="text" data-prop="eyebrow">{block.eyebrow}</p>
+        <h2 class="mt-6 max-w-[20ch] text-4xl leading-[1.05] md:text-[45px]" data-editable="text" data-prop="heading">
+          {block.heading}
+        </h2>
+      </div>
+      {
+        block.button?.label && (
+          <LinkButton
+            variant="outline"
+            href={block.button.url}
+            label={block.button.label}
+            linkProps={{ 'data-editable': 'text', 'data-prop': 'button.label' }}
+          />
+        )
+      }
+    </div>
+    <ul class="mt-12 grid gap-6 md:grid-cols-3">
+      {
+        entries.map((entry) => (
+          <li>
+            <NewsCard entry={entry} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

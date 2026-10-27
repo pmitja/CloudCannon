@@ -5,8 +5,8 @@
 import { registerAstroComponent } from '@cloudcannon/editable-regions/astro';
 // Sections contain shadcn/ui (React) components, so the React renderer is needed too.
 import '@cloudcannon/editable-regions/astro-react-renderer';
-import { blocks } from '@/components/blocks';
+import { editableBlocks } from '@/components/blocks/editable';
 
-for (const [name, component] of Object.entries(blocks)) {
+for (const [name, component] of Object.entries(editableBlocks)) {
   registerAstroComponent(name, component);
 }

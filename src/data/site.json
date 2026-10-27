@@ -45,8 +45,10 @@
       "label": "News & Insights",
       "url": "",
       "children": [
-        { "label": "News", "url": "https://ltse.com/insights?tab=news" },
-        { "label": "Exchange Insights", "url": "https://ltse.com/insights?tab=exchange-insights" },
+        { "label": "All News & Insights", "url": "/insights/" },
+        { "label": "Press Releases", "url": "/insights/press-releases/" },
+        { "label": "In the News", "url": "/insights/in-the-news/" },
+        { "label": "Research", "url": "/insights/research/" },
         { "label": "Private Markets Insights", "url": "https://ltse.com/insights/?tab=private-markets" }
       ]
     },
@@ -118,9 +120,9 @@
       {
         "title": "News & Insights",
         "links": [
-          { "label": "News", "url": "https://ltse.com/insights" },
+          { "label": "News", "url": "/insights/" },
           { "label": "The Eric Ries Show", "url": "https://ltse.com/the-eric-ries-show" },
-          { "label": "Exchange Insights", "url": "https://ltse.com/insights" },
+          { "label": "Research", "url": "/insights/research/" },
           { "label": "Private Markets Insights", "url": "https://ltse.com/insights/?tab=private-markets" }
         ]
       }

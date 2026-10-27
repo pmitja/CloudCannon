@@ -1,0 +1,41 @@
+---
+import LinkButton from '@/components/LinkButton';
+
+const block = Astro.props as Record<string, any>;
+---
+
+<section class="border-b">
+  <div class="container-ltse grid items-center gap-10 py-12 md:grid-cols-[1fr_1.1fr] md:py-16">
+    <div>
+      <h1 class="max-w-[12ch] text-5xl leading-none md:text-[64px]" data-editable="text" data-prop="heading">
+        {block.heading}
+      </h1>
+      <p class="mt-8 max-w-[36ch] text-[15px] leading-relaxed" data-editable="text" data-prop="text">{block.text}</p>
+      {
+        block.button?.label && (
+          <LinkButton
+            className="mt-12"
+            href={block.button.url}
+            label={block.button.label}
+            linkProps={{ 'data-editable': 'text', 'data-prop': 'button.label' }}
+          />
+        )
+      }
+    </div>
+    {
+      block.image?.src && (
+        <img
+          src={block.image.src}
+          alt={block.image.alt ?? ''}
+          class="w-full"
+          width="800"
+          height="590"
+          fetchpriority="high"
+          data-editable="image"
+          data-prop-src="image.src"
+          data-prop-alt="image.alt"
+        />
+      )
+    }
+  </div>
+</section>

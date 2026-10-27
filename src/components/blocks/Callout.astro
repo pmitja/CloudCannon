@@ -1,0 +1,41 @@
+---
+import LinkButton from '@/components/LinkButton';
+import { cn } from '@/lib/utils';
+
+const block = Astro.props as Record<string, any>;
+const backgrounds: Record<string, string> = {
+  green: 'bg-brand-green',
+  yellow: 'bg-primary',
+  grey: 'bg-secondary',
+  white: 'bg-background',
+};
+---
+
+<section class="pb-16 pt-24 md:pb-24 md:pt-32">
+  <div class="container-ltse">
+    <div class={cn('relative grid border border-foreground/40 md:grid-cols-2', backgrounds[block.background] ?? 'bg-brand-green')}>
+      <div class="p-8 md:p-16">
+        <h2 class="max-w-[14ch] text-4xl leading-[1.05]" data-editable="text" data-prop="heading">{block.heading}</h2>
+        <p class="mt-6 max-w-[40ch] text-[15px] leading-relaxed" data-editable="text" data-prop="text">{block.text}</p>
+        {
+          block.button?.label && (
+            <LinkButton className="mt-10" href={block.button.url} label={block.button.label} />
+          )
+        }
+      </div>
+      {
+        block.image?.src && (
+          <img
+            src={block.image.src}
+            alt={block.image.alt ?? ''}
+            class="w-full self-start md:-mt-24"
+            loading="lazy"
+            data-editable="image"
+            data-prop-src="image.src"
+            data-prop-alt="image.alt"
+          />
+        )
+      }
+    </div>
+  </div>
+</section>

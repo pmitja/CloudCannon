@@ -1,0 +1,33 @@
+---
+/** Responsive Vimeo/YouTube embed. Editors paste a normal video link in CloudCannon. */
+interface Props {
+  url?: string;
+  title?: string;
+}
+const { url, title = 'Video' } = Astro.props;
+
+function toEmbed(link?: string) {
+  if (!link) return null;
+  const vimeo = link.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  if (vimeo) return `https://player.vimeo.com/video/${vimeo[1]}?dnt=1`;
+  const yt = link.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{11})/);
+  if (yt) return `https://www.youtube-nocookie.com/embed/${yt[1]}`;
+  return link;
+}
+const src = toEmbed(url);
+---
+
+{
+  src && (
+    <div class="relative aspect-video w-full bg-black">
+      <iframe
+        src={src}
+        title={title}
+        class="absolute inset-0 size-full"
+        loading="lazy"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen
+      />
+    </div>
+  )
+}

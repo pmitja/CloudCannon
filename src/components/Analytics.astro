@@ -1,0 +1,38 @@
+---
+/**
+ * Editors pick the provider and ID in CloudCannon (Data → Site settings → Analytics).
+ * Scripts are only added to production builds.
+ */
+interface Props {
+  analytics: { provider: string; id: string };
+}
+const { provider, id } = Astro.props.analytics;
+const enabled = import.meta.env.PROD && provider !== 'none' && Boolean(id);
+---
+
+{enabled && provider === 'plausible' && (
+  <script is:inline defer data-domain={id} src="https://plausible.io/js/script.js"></script>
+)}
+{enabled && provider === 'ga4' && (
+  <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${id}`}></script>
+)}
+{enabled && provider === 'ga4' && (
+  <script is:inline define:vars={{ id }}>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', id);
+  </script>
+)}
+{enabled && provider === 'gtm' && (
+  <script is:inline define:vars={{ id }}>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      var f = d.getElementsByTagName(s)[0], j = d.createElement(s);
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', id);
+  </script>
+)}

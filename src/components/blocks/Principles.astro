@@ -1,0 +1,50 @@
+---
+import LinkButton from '@/components/LinkButton';
+import VideoEmbed from '@/components/VideoEmbed.astro';
+
+const block = Astro.props as Record<string, any>;
+---
+
+<section class="relative overflow-hidden border-y bg-secondary">
+  <!-- folded-corner detail from the LTSE design -->
+  <div
+    class="pointer-events-none absolute right-0 top-0 hidden size-28 bg-white md:block"
+    style="clip-path: polygon(0 0, 100% 0, 100% 100%);"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="container-ltse grid items-center gap-10 py-16 md:grid-cols-2 md:py-24">
+    <div>
+      <p class="eyebrow" data-editable="text" data-prop="eyebrow">{block.eyebrow}</p>
+      <h2 class="mt-6 max-w-[14ch] text-4xl leading-[1.05]" data-editable="text" data-prop="heading">{block.heading}</h2>
+      <p class="mt-6 max-w-[46ch] text-[13px] leading-relaxed" data-editable="text" data-prop="text">{block.text}</p>
+      {
+        block.button?.label && (
+          <LinkButton
+            className="mt-10"
+            href={block.button.url}
+            label={block.button.label}
+            linkProps={{ 'data-editable': 'text', 'data-prop': 'button.label' }}
+          />
+        )
+      }
+    </div>
+    <div class="md:pl-10">
+      <VideoEmbed url={block.video?.url} title={block.video?.title} />
+    </div>
+  </div>
+
+  <div class="border-t">
+    <ol class="container-ltse grid sm:grid-cols-2 lg:grid-cols-5" data-editable="array" data-prop="principles">
+      {
+        block.principles?.map((p: any) => (
+          <li class="border-b border-foreground/15 px-4 py-10 lg:border-b-0 lg:border-l lg:last:border-r" data-editable="array-item">
+            <h3 class="text-2xl leading-tight" data-editable="text" data-prop="title">{p.title}</h3>
+            <p class="mt-6 text-[13px] leading-relaxed" data-editable="text" data-prop="text">{p.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

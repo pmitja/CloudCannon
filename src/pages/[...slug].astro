@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlockRenderer from '@/components/BlockRenderer.astro';
+import site from '@/data/site.json';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  return pages.map((page) => {
+    // src/content/pages/index.md -> "/", about/mission.md -> "/about/mission/"
+    const slug = page.id === 'index' ? undefined : page.id.replace(/\/index$/, '');
+    return { params: { slug }, props: { page } };
+  });
+}
+
+const { page } = Astro.props;
+const seo = page.data.seo ?? {};
+---
+
+<BaseLayout
+  title={page.data.title || site.site_name}
+  seo={{ description: seo.description ?? undefined, image: seo.image ?? undefined, no_index: seo.no_index ?? false }}
+>
+  <BlockRenderer blocks={page.data.content_blocks ?? []} />
+</BaseLayout>

@@ -1,0 +1,54 @@
+---
+import '@/styles/global.css';
+import site from '@/data/site.json';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer.astro';
+import Analytics from '@/components/Analytics.astro';
+
+interface Props {
+  title: string;
+  seo?: { description?: string; image?: string; no_index?: boolean };
+}
+
+const { title, seo = {} } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {seo.description && <meta name="description" content={seo.description} />}
+    {seo.no_index && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    {seo.description && <meta property="og:description" content={seo.description} />}
+    {seo.image && <meta property="og:image" content={seo.image} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap"
+    />
+    <Analytics analytics={site.analytics} />
+  </head>
+  <body class="min-h-screen">
+    <Header client:load navigation={site.navigation} button={site.header_button} logo={site.logo} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      // Only inside CloudCannon's Visual Editor: enable live re-rendering of sections.
+      if ((window as any).inEditorMode) {
+        import('../scripts/register-components').catch((error) => {
+          console.warn('Failed to load CloudCannon component registration:', error);
+        });
+      }
+    </script>
+  </body>
+</html>

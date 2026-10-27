@@ -1,0 +1,35 @@
+---
+import { Card } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+
+const block = Astro.props as Record<string, any>;
+---
+
+<section class="py-16 md:py-20">
+  <div class="container-ltse">
+    <p class="eyebrow text-center" data-editable="text" data-prop="eyebrow">{block.eyebrow}</p>
+    <h2 class="mt-6 text-center text-4xl md:text-[58px] md:leading-none" data-editable="text" data-prop="heading">
+      {block.heading}
+    </h2>
+    <div class="mt-12 grid gap-6 md:grid-cols-2" data-editable="array" data-prop="items">
+      {
+        block.items?.map((item: any) => (
+          <a href={item.url} class="group block" data-editable="array-item">
+            <Card className="h-full flex-row items-center gap-6 rounded-none border-foreground/30 p-6 shadow-none transition-shadow group-hover:shadow-lg">
+              <div class="flex-1">
+                <p class="text-2xl font-black tracking-tight">{item.company}</p>
+                <Badge variant="secondary" className="eyebrow mt-4 rounded-none">
+                  {item.label}
+                </Badge>
+                <p class="mt-3 font-serif text-lg leading-snug" data-editable="text" data-prop="text">
+                  {item.text}
+                </p>
+              </div>
+              <img src={item.image} alt="" class="w-2/5 border shadow-sm" loading="lazy" />
+            </Card>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

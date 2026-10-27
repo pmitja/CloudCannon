@@ -1,0 +1,24 @@
+---
+const block = Astro.props as Record<string, any>;
+const logos: Array<{ name: string; image: string }> = block.logos ?? [];
+---
+
+<section class="overflow-hidden py-14">
+  <div class="container-ltse">
+    <h2 class="text-2xl" data-editable="text" data-prop="heading">{block.heading}</h2>
+    <p class="mt-3 text-[14px]" data-editable="text" data-prop="text">{block.text}</p>
+  </div>
+  <div class="mt-10 flex w-max animate-marquee gap-20 hover:[animation-play-state:paused]">
+    {
+      [...logos, ...logos].map((logo, i) => (
+        <img
+          src={logo.image}
+          alt={i < logos.length ? logo.name : ''}
+          aria-hidden={i >= logos.length ? 'true' : undefined}
+          class="h-7 w-auto max-w-[180px] object-contain grayscale"
+          loading="lazy"
+        />
+      ))
+    }
+  </div>
+</section>

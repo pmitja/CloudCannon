@@ -1,0 +1,16 @@
+---
+import TabsBlock from '@/components/TabsBlock';
+import VideoEmbed from '@/components/VideoEmbed.astro';
+
+const block = Astro.props as Record<string, any>;
+---
+
+<section class="pb-16 md:pb-24">
+  <div class="container-ltse grid items-start gap-10 md:grid-cols-2">
+    <div>
+      <h2 class="max-w-[16ch] text-4xl leading-[1.05]" data-editable="text" data-prop="heading">{block.heading}</h2>
+      <TabsBlock client:visible tabs={block.tabs ?? []} />
+    </div>
+    <VideoEmbed url={block.video?.url} title={block.video?.title} />
+  </div>
+</section>

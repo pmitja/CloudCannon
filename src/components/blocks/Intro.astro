@@ -1,0 +1,11 @@
+---
+const block = Astro.props as Record<string, any>;
+---
+
+<section class="py-16 md:py-24">
+  <div class="container-ltse mx-auto max-w-3xl text-center">
+    <p class="eyebrow" data-editable="text" data-prop="eyebrow">{block.eyebrow}</p>
+    <h2 class="mt-6 text-4xl md:text-[45px] md:leading-none" data-editable="text" data-prop="heading">{block.heading}</h2>
+    <p class="mx-auto mt-6 max-w-xl text-[14px] leading-relaxed" data-editable="text" data-prop="text">{block.text}</p>
+  </div>
+</section>

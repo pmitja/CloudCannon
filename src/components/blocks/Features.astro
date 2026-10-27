@@ -1,0 +1,34 @@
+---
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import LinkButton from '@/components/LinkButton';
+
+const block = Astro.props as Record<string, any>;
+---
+
+<section class="py-16 md:py-24">
+  <div class="container-ltse">
+    <h2 class="mx-auto max-w-4xl text-center text-3xl leading-snug md:text-[30px]" data-editable="text" data-prop="heading">
+      {block.heading}
+    </h2>
+    <div class="mt-12 grid gap-0 md:grid-cols-3" data-editable="array" data-prop="items">
+      {
+        block.items?.map((item: any) => (
+          <Card className="gap-4 rounded-none border-0 border-foreground/15 bg-transparent py-6 shadow-none md:border-l md:last:border-r" data-editable="array-item">
+            <CardHeader className="px-4">
+              {item.icon && <img src={item.icon} alt="" class="mb-4 h-14 w-auto" loading="lazy" />}
+              <CardTitle className="font-serif text-2xl font-light leading-tight">{item.title}</CardTitle>
+            </CardHeader>
+            <CardContent className="px-4 text-[13px] leading-relaxed">{item.text}</CardContent>
+          </Card>
+        ))
+      }
+    </div>
+    {
+      block.button?.label && (
+        <div class="mt-12 text-center">
+          <LinkButton href={block.button.url} label={block.button.label} />
+        </div>
+      )
+    }
+  </div>
+</section>

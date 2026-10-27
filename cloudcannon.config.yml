@@ -1,0 +1,310 @@
+# CloudCannon configuration for the LTSE Astro demo.
+# Docs: https://cloudcannon.com/documentation/developer-reference/configuration-file/
+
+paths:
+  static: public
+  uploads: public/uploads
+
+collections_config:
+  pages:
+    path: src/content/pages
+    name: Pages
+    icon: wysiwyg
+    url: /[slug]/
+    glob:
+      - '**/*.md'
+    _enabled_editors:
+      - visual
+      - data
+    schemas:
+      default:
+        path: .cloudcannon/schemas/page.md
+        name: Page (block builder)
+        icon: view_quilt
+    add_options:
+      - name: New page
+        schema: default
+        icon: note_add
+
+  settings:
+    path: src/data
+    name: Site settings
+    icon: settings
+    disable_add: true
+    disable_file_actions: true
+    _enabled_editors:
+      - data
+
+collection_groups:
+  - heading: Website
+    collections:
+      - pages
+  - heading: Global
+    collections:
+      - settings
+
+# ---------------------------------------------------------------------------
+# Inputs: how each field is edited. Keys apply anywhere they appear.
+# ---------------------------------------------------------------------------
+_inputs:
+  title:
+    type: text
+    comment: Browser tab title and search-result title
+  heading:
+    type: text
+  eyebrow:
+    type: text
+    comment: Small all-caps label above the heading
+  text:
+    type: textarea
+  quote:
+    type: textarea
+  src:
+    type: image
+    label: Image
+  alt:
+    type: text
+    label: Alt text
+    comment: Describe the image for screen readers and SEO
+  image:
+    type: image
+  icon:
+    type: image
+  url:
+    type: url
+  video:
+    type: object
+    comment: Paste a Vimeo or YouTube link
+  background:
+    type: select
+    options:
+      values:
+        - green
+        - yellow
+        - grey
+        - white
+  seo:
+    type: object
+    label: SEO
+    options:
+      preview:
+        icon: travel_explore
+  description:
+    type: textarea
+    comment: Shown in Google results (~155 characters)
+    options:
+      max_length: 170
+  no_index:
+    type: switch
+    label: Hide from search engines
+  content_blocks:
+    type: array
+    label: Page sections
+    options:
+      structures: _structures.content_blocks
+  provider:
+    type: select
+    label: Analytics provider
+    options:
+      values:
+        - id: none
+          name: None
+        - id: plausible
+          name: Plausible
+        - id: ga4
+          name: Google Analytics 4
+        - id: gtm
+          name: Google Tag Manager
+  id:
+    type: text
+    label: Measurement / container ID or domain
+  platform:
+    type: select
+    options:
+      values:
+        - linkedin
+        - bluesky
+        - youtube
+        - x
+
+# ---------------------------------------------------------------------------
+# Section library: what editors see when they click "Add section".
+# ---------------------------------------------------------------------------
+_structures:
+  content_blocks:
+    style: modal
+    values:
+      - label: Hero
+        icon: view_day
+        description: Large heading, intro text, button and illustration
+        value:
+          _name: hero
+          heading:
+          text:
+          button:
+            label:
+            url:
+          image:
+            src:
+            alt:
+        preview:
+          text:
+            - key: heading
+          subtext: Hero
+          image:
+            - key: image.src
+
+      - label: Logo strip
+        icon: view_carousel
+        description: Scrolling row of partner or investor logos
+        value:
+          _name: logo_strip
+          heading:
+          text:
+          logos: []
+        preview:
+          text:
+            - key: heading
+          subtext: Logo strip
+
+      - label: Video + press list
+        icon: smart_display
+        description: Featured video testimonial with a list of press mentions
+        value:
+          _name: media_feature
+          video:
+            url:
+            title:
+          quote:
+          attribution:
+          items: []
+        preview:
+          text:
+            - key: quote
+          subtext: Video + press list
+
+      - label: Case studies
+        icon: auto_stories
+        description: Cards linking to customer case studies
+        value:
+          _name: case_studies
+          eyebrow:
+          heading:
+          items: []
+        preview:
+          text:
+            - key: heading
+          subtext: Case studies
+
+      - label: Intro text
+        icon: notes
+        description: Centered eyebrow, heading and paragraph
+        value:
+          _name: intro
+          eyebrow:
+          heading:
+          text:
+        preview:
+          text:
+            - key: heading
+          subtext: Intro text
+
+      - label: Tabs + video
+        icon: tab
+        description: Heading with switchable tabs and a video
+        value:
+          _name: tabs
+          heading:
+          video:
+            url:
+            title:
+          tabs: []
+        preview:
+          text:
+            - key: heading
+          subtext: Tabs + video
+
+      - label: Principles
+        icon: format_list_numbered
+        description: Intro, video and a row of numbered principles
+        value:
+          _name: principles
+          eyebrow:
+          heading:
+          text:
+          button:
+            label:
+            url:
+          video:
+            url:
+            title:
+          principles: []
+        preview:
+          text:
+            - key: heading
+          subtext: Principles
+
+      - label: Statement + quote
+        icon: format_quote
+        description: Centered heading with a short sourced quote
+        value:
+          _name: statement
+          eyebrow:
+          heading:
+          quote:
+          source:
+        preview:
+          text:
+            - key: heading
+          subtext: Statement
+
+      - label: Feature columns
+        icon: view_column
+        description: Three columns with icon, title and text
+        value:
+          _name: features
+          heading:
+          items: []
+          button:
+            label:
+            url:
+        preview:
+          text:
+            - key: heading
+          subtext: Feature columns
+
+      - label: Callout box
+        icon: crop_square
+        description: Coloured box with heading, text, button and illustration
+        value:
+          _name: callout
+          heading:
+          text:
+          button:
+            label:
+            url:
+          image:
+            src:
+            alt:
+          background: green
+        preview:
+          text:
+            - key: heading
+          subtext: Callout box
+          image:
+            - key: image.src
+
+      - label: CTA banner
+        icon: campaign
+        description: Full-width coloured banner with one call to action
+        value:
+          _name: cta_banner
+          heading:
+          button:
+            label:
+            url:
+          background: yellow
+        preview:
+          text:
+            - key: heading
+          subtext: CTA banner

@@ -1,0 +1,22 @@
+---
+import LinkButton from '@/components/LinkButton';
+import { cn } from '@/lib/utils';
+
+const block = Astro.props as Record<string, any>;
+const backgrounds: Record<string, string> = {
+  yellow: 'bg-primary',
+  green: 'bg-brand-green',
+  grey: 'bg-secondary',
+};
+---
+
+<section class={cn('border-t border-foreground py-20 md:py-28', backgrounds[block.background] ?? 'bg-primary')}>
+  <div class="container-ltse text-center">
+    <h2 class="text-4xl md:text-[52px]" data-editable="text" data-prop="heading">{block.heading}</h2>
+    {
+      block.button?.label && (
+        <LinkButton className="mt-10" variant="outline" href={block.button.url} label={block.button.label} />
+      )
+    }
+  </div>
+</section>

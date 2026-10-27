@@ -1,0 +1,27 @@
+---
+/**
+ * Page builder: renders each item in a page's `content_blocks` with the matching section component.
+ * The data-editable attributes let CloudCannon's Visual Editor add, remove, reorder and live-edit sections.
+ */
+import { blocks as components } from './blocks';
+
+interface Props {
+  blocks: Array<{ _name: string; [key: string]: any }>;
+}
+
+const { blocks } = Astro.props;
+---
+
+<div data-editable="array" data-prop="content_blocks" data-id-key="_name" data-component-key="_name">
+  {
+    blocks.map((block) => {
+      const Component = components[block._name as keyof typeof components];
+      if (!Component) return null;
+      return (
+        <div data-editable="array-item" data-id={block._name} data-component={block._name}>
+          <Component {...block} />
+        </div>
+      );
+    })
+  }
+</div>

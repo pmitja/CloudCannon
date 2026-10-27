@@ -1,0 +1,145 @@
+{
+  "site_name": "The Long-Term Stock Exchange",
+  "logo": {
+    "wordmark": "LTSE",
+    "tagline": "Long-Term Stock Exchange"
+  },
+  "navigation": [
+    { "label": "Mission", "url": "https://ltse.com/about/mission", "children": [] },
+    {
+      "label": "Listings",
+      "url": "",
+      "children": [
+        { "label": "Partner with LTSE", "url": "/listings/partner-with-ltse" },
+        { "label": "Listed Companies", "url": "https://ltse.com/listings/listed-companies" },
+        { "label": "Listing Standards", "url": "https://ltse.com/listings/listing-standards" },
+        { "label": "How to List", "url": "https://ltse.com/listings/how-to-list" },
+        { "label": "FAQs", "url": "https://ltse.com/listings/faq" },
+        { "label": "Listed Company Resources", "url": "https://ltse.com/listings/continued-listing-disclosures-notifications" }
+      ]
+    },
+    {
+      "label": "Trading",
+      "url": "",
+      "children": [
+        { "label": "Why Trade on LTSE", "url": "https://ltse.com/trading/why-trade" },
+        { "label": "Platform Capabilities", "url": "https://ltse.com/trading/platform-capabilities" },
+        { "label": "Trading Resources", "url": "https://ltse.com/trading/resources" },
+        { "label": "Fee Schedule & Incentives", "url": "https://ltse.com/trading/fees-and-incentives" },
+        { "label": "Membership", "url": "https://ltse.com/trading/membership" },
+        { "label": "Trading Schedule", "url": "https://ltse.com/trading/trading-schedule" },
+        { "label": "Product Data", "url": "https://ltse.com/trading/product-data" },
+        { "label": "LTSE Market Maker Program", "url": "https://ltse.com/trading/market-maker" }
+      ]
+    },
+    {
+      "label": "Private Markets",
+      "url": "",
+      "children": [
+        { "label": "LTSE Private Markets Solutions", "url": "https://ltse.com/private-markets/solutions" },
+        { "label": "Late-Stage Private Companies", "url": "https://ltse.com/private-markets/late-stage-companies" },
+        { "label": "Long-Term Investors", "url": "https://ltse.com/private-markets/investors" }
+      ]
+    },
+    {
+      "label": "News & Insights",
+      "url": "",
+      "children": [
+        { "label": "News", "url": "https://ltse.com/insights?tab=news" },
+        { "label": "Exchange Insights", "url": "https://ltse.com/insights?tab=exchange-insights" },
+        { "label": "Private Markets Insights", "url": "https://ltse.com/insights/?tab=private-markets" }
+      ]
+    },
+    {
+      "label": "About",
+      "url": "",
+      "children": [
+        { "label": "Mission", "url": "https://ltse.com/about/mission" },
+        { "label": "Leadership", "url": "https://ltse.com/about/leadership" },
+        { "label": "Careers", "url": "https://ltse.com/about/careers" },
+        { "label": "Contact", "url": "https://ltse.com/contact" }
+      ]
+    }
+  ],
+  "header_button": { "label": "Contact", "url": "https://ltse.com/contact" },
+  "footer": {
+    "columns": [
+      {
+        "title": "About",
+        "links": [
+          { "label": "Mission", "url": "https://ltse.com/about/mission" },
+          { "label": "Leadership", "url": "https://ltse.com/about/leadership" },
+          { "label": "Careers", "url": "https://ltse.com/about/careers" },
+          { "label": "Contact", "url": "https://ltse.com/contact" }
+        ]
+      },
+      {
+        "title": "Listings",
+        "links": [
+          { "label": "Partner With LTSE", "url": "/listings/partner-with-ltse" },
+          { "label": "Listing Standards", "url": "https://ltse.com/listings/listing-standards" },
+          { "label": "How To List", "url": "https://ltse.com/listings/how-to-list" },
+          { "label": "FAQs", "url": "https://ltse.com/listings/faq" },
+          { "label": "Listed Company Resources", "url": "https://ltse.com/listings/continued-listing-disclosures-notifications" }
+        ]
+      },
+      {
+        "title": "Trading",
+        "links": [
+          { "label": "Why Trade On LTSE", "url": "https://ltse.com/trading/why-trade" },
+          { "label": "Platform Capabilities", "url": "https://ltse.com/trading/platform-capabilities" },
+          { "label": "Trading Resources", "url": "https://ltse.com/trading/resources" },
+          { "label": "Fee Schedule & Incentives", "url": "https://ltse.com/trading/fees-and-incentives" },
+          { "label": "Membership", "url": "https://ltse.com/trading/membership" },
+          { "label": "Trading Schedule", "url": "https://ltse.com/trading/trading-schedule" },
+          { "label": "Product Data", "url": "https://ltse.com/trading/product-data" }
+        ]
+      },
+      {
+        "title": "Regulation",
+        "links": [
+          { "label": "Overview", "url": "https://ltse.com/regulation/overview" },
+          { "label": "LTSE Rules", "url": "https://ltse.com/regulation/rule-filings" },
+          { "label": "Governance", "url": "https://ltse.com/regulation/governance" },
+          { "label": "NMS Plans", "url": "https://ltse.com/regulation/nms-plans" },
+          { "label": "605 Reports", "url": "https://ltse.com/regulation/rule-605-reports" },
+          { "label": "Disciplinary Actions", "url": "https://ltse.com/regulation/disciplinary-actions" }
+        ]
+      },
+      {
+        "title": "Private Markets",
+        "links": [
+          { "label": "LTSE Private Market Solutions", "url": "https://ltse.com/private-markets/solutions" },
+          { "label": "Late-Stage Private Companies", "url": "https://ltse.com/private-markets/late-stage-companies" },
+          { "label": "Long-Term Investors", "url": "https://ltse.com/private-markets/investors" },
+          { "label": "Private Markets Insights", "url": "https://ltse.com/insights/?tab=private-markets" }
+        ]
+      },
+      {
+        "title": "News & Insights",
+        "links": [
+          { "label": "News", "url": "https://ltse.com/insights" },
+          { "label": "The Eric Ries Show", "url": "https://ltse.com/the-eric-ries-show" },
+          { "label": "Exchange Insights", "url": "https://ltse.com/insights" },
+          { "label": "Private Markets Insights", "url": "https://ltse.com/insights/?tab=private-markets" }
+        ]
+      }
+    ],
+    "legal_links": [
+      { "label": "Terms of Use", "url": "https://ltse.com/terms-of-use" },
+      { "label": "Privacy Policy", "url": "https://ltse.com/terms-of-use" },
+      { "label": "Do Not Sell or Share My Personal Information", "url": "#" }
+    ],
+    "copyright": "© 2026 LTSE Services, Inc.",
+    "social": [
+      { "platform": "linkedin", "url": "https://www.linkedin.com/company/ltse" },
+      { "platform": "bluesky", "url": "https://bsky.app/profile/ltse.bsky.social" },
+      { "platform": "youtube", "url": "https://www.youtube.com/@longtermstockexchange" },
+      { "platform": "x", "url": "https://twitter.com/ltse" }
+    ]
+  },
+  "analytics": {
+    "provider": "none",
+    "id": ""
+  }
+}
